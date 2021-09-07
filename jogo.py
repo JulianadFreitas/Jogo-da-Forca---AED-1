@@ -1,10 +1,31 @@
+from tkinter import Widget
 from tkinter.constants import W
 from graphics import *
+import random
+
 def main():
+ a = random.randrange(1,10)
+ b = random.randrange(1,10)
+ c = random.randrange(1,10)
+ d = random.randrange(0,10)
+ x = random.choice(["+","-","*","/"])
+ y = random.choice(["+","-","*","/"])
+ z = random.choice(["+","-","*"])
+ 
+ operadores = [x, y, z]
+ operacao = str(str(a) + str(x) + str(b) + str(y) + str(c) + str(z ) + str(d))
+ resultado = round(eval(operacao))
+ operacaoNaTela = (str(str(a) + "__" + str(b) + "__"+ str(c) +"__"+ str(d) + " = ") + str(resultado))
+ print(a,b, round(resultado), operacao, operacaoNaTela) 
+ 
  win = GraphWin( "Jogo da Forca" , 500, 340)
- area = Rectangle(Point( 10,10),Point(290,130))
+ area = Rectangle(Point( 10,10),Point(290,330))
  retanguloBase = Rectangle(Point(65,115),Point(135,130))
  area.draw(win)
+ label = Text(Point(150, 180), 'Descrubra os operadores')
+ label.draw(win) 
+ label = Text(Point(150, 205), operacaoNaTela)
+ label.draw(win) 
  retanguloBase.draw(win)
  cabeca = Circle(Point( 119.5,45), 5)
  cabeca.draw(win)
@@ -28,7 +49,7 @@ def main():
  peDireito.draw(win)
  peEsquerdo=Line(Point(120,90),Point(110,100))
  peEsquerdo.draw(win)
- 
+
  # Expessura de linha
  retanguloBase.setWidth(2)
  linhaReta.setWidth(2)
@@ -58,10 +79,27 @@ def main():
  linhaReta.setFill( "brown")
  linhaHorizontal.setFill( "brown")
  linhaApoio.setFill( "brown")
+
+ entrada= Entry(Point(200,150),1)
+ entrada.draw(win)
+ txt = Text(Point(200,180),1)
+ txt.draw(win)
+ txt.setText(entrada.getText())
+ print(txt)
+ mensagem = ""
+ aviso = Text(Point(200,180),mensagem)
+ aviso.draw(win)
  
- 
+ for i in range(0,3):
+     if i ==3:
+         mensagem="Você perdeu"
+         txt.setText("")
+     elif(txt == x):
+         mensagem="Parabéns, você acertou. Agora digite o próximo operador"
+         win.getMouse()
+         txt.setText(mensagem.getText())
+         win.getMouse()
  win.getMouse() # Espera o click do mouse
  win.close() # Fecha a janela
      
-if __name__ == "__main__":
- main()
+main()
