@@ -39,6 +39,7 @@ def main():
  bracoEsquerdo.setWidth(2)
  peDireito.setWidth(2)
  peEsquerdo.setWidth(2)
+ 
  # Cor da borda
  retanguloBase.setOutline("brown") 
  area.setOutline("brown") 
