@@ -12,7 +12,6 @@ def main():
  y = random.choice(["+","-","*","/"])
  z = random.choice(["+","-","*"])
  
- operadores = [x, y, z]
  operacao = str(str(a) + str(x) + str(b) + str(y) + str(c) + str(z ) + str(d))
  resultado = round(eval(operacao))
  operacaoNaTela = (str(str(a) + "__" + str(b) + "__"+ str(c) +"__"+ str(d) + " = ") + str(resultado))
@@ -87,18 +86,25 @@ def main():
  txt.setText(entrada.getText())
  print(txt)
  mensagem = ""
- aviso = Text(Point(200,180),mensagem)
- aviso.draw(win)
+
  
- for i in range(0,3):
-     if i ==3:
+ for i in range(0,6):
+     if i == 6:
+         win.getMouse()
          mensagem="Você perdeu"
          txt.setText("")
-     elif(txt == x):
-         mensagem="Parabéns, você acertou. Agora digite o próximo operador"
+     elif txt == x or txt == y or txt == z:
          win.getMouse()
+         mensagem="Parabéns, você acertou. Agora digite o próximo operador"
          txt.setText(mensagem.getText())
          win.getMouse()
+     elif txt != y or txt != x or txt != z:
+         win.getMouse()
+         mensagem="Você errou, tente novamente!"
+         txt.setText(mensagem.getText())
+         win.getMouse()
+ aviso = Text(Point(200,180),mensagem)
+ aviso.draw(win)
  win.getMouse() # Espera o click do mouse
  win.close() # Fecha a janela
      
